@@ -25,7 +25,7 @@ def parse_wp_config(source_path: str):
     return parsedConfig
 
 def main():
-    dest = input("Download directory: ")
+    dest = os.path.expanduser(input("Download directory: "))
 
     if os.path.isdir(dest):
         raise Exception("Destination already exists")
@@ -55,7 +55,7 @@ def main():
         print("Could not dump database.")
         print(f"Dump your database into: {dest}/dump")
 
-    with open("./boiler/docker-compose.yml") as boilerplate:
+    with open(os.path.join(os.path.dirname(__file__), 'boiler/docker-compose.yml')) as boilerplate:
         content = boilerplate.read()
 
     content = content.replace("$$DB_USER$$", wp_config['DB_USER'])

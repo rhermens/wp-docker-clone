@@ -10,9 +10,9 @@ services:
       - 8080:80
     environment:
       WORDPRESS_DB_HOST: db
-      WORDPRESS_DB_USER: $$DB_USER$$
-      WORDPRESS_DB_PASSWORD: $$DB_PWD$$
-      WORDPRESS_DB_NAME: $$DB_NAME$$
+      WORDPRESS_DB_USER: wp_dev
+      WORDPRESS_DB_PASSWORD: wp_dev
+      WORDPRESS_DB_NAME: wp_dev
       WORDPRESS_CONFIG_EXTRA: |
         define('WP_HOME', 'http://localhost:8080');
         define('WP_SITEURL', 'http://localhost:8080');
@@ -23,9 +23,9 @@ services:
     image: mysql:5.7
     restart: always
     environment:
-      MYSQL_DATABASE: $$DB_NAME$$
-      MYSQL_USER: $$DB_USER$$
-      MYSQL_PASSWORD: $$DB_PWD$$
+      MYSQL_DATABASE: wp_dev
+      MYSQL_USER: wp_dev
+      MYSQL_PASSWORD: wp_dev
       MYSQL_RANDOM_ROOT_PASSWORD: '1'
     volumes:
       - ./dump:/docker-entrypoint-initdb.d
